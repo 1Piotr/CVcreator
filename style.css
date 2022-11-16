@@ -1,13 +1,19 @@
 * {
     box-sizing: border-box;
 }
+body {
+    width:100vw;
+    height:100vh;
+}
 #cv {
     display:flex;
+    width:100%;
+    height: 100%;
 }
 
 #left {
-    border-right: 5px solid black;
-    width: 20%;
+    border-right: 1px solid black;
+    width: 25%;
     background-color: azure;
 }
 #right {
