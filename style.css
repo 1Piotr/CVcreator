@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+#cv {
+    display:flex;
+}
+
+#left {
+    border-right: 5px solid black;
+    width: 20%;
+    background-color: azure;
+}
+#right {
+    width:80%;
+}
