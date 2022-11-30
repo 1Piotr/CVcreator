@@ -1,17 +1,21 @@
-myData = []
-let myDictionary = {firstName:"", lastName:""}
+let myData = []
 
 
-function myFoo() {
+function newFoo(firstName, lastName) {
+    this.firstName=firstName;
+    this.lastName=lastName;
+}
+
+function myFoo(event) {
+    event.preventDefault()
     
     let first = document.getElementById('firstName').value
     console.log(first)
     let last = document.getElementById('lastName').value
+    let newCV = new newFoo(first,last)
     
-    myDictionary.firstName=first
-    myDictionary.lastName=last
-    console.log(myDictionary)
-    myData.push(myDictionary)
+    console.log(newCV)
+    myData.push(newCV)
     window.alert(myData[0].firstName)
     
 
