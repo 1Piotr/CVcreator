@@ -5,9 +5,9 @@ let myDictionary = {firstName:"", lastName:""}
 function myFoo() {
     
     let first = document.getElementById('firstName').value
-    alert.window(first)
+    console.log(first)
     let last = document.getElementById('lastName').value
-    alert.window(last)
+    
     myDictionary.firstName=first
     myDictionary.lastName=last
     console.log(myDictionary)
