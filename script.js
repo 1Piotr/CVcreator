@@ -8,6 +8,7 @@ function myFoo(event) {
     let myDictionary = {firstName:"", lastName:""}
     myDictionary[firstName]=first
     myDictionary[lastName]=last
+    console.log(myDictionary)
     myData.push(myDictionary)
     window.alert(myData)
     
