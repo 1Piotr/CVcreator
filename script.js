@@ -1,13 +1,13 @@
 myData = []
 let myDictionary = {firstName:"", lastName:""}
-let first = document.getElementById('firstName').value
-let last = document.getElementById('lastName').value
+
 
 function myFoo(event) {
     event.preventDefault()
-    
-    myDictionary[firstName]=first
-    myDictionary[lastName]=last
+    let first = document.getElementById('firstName').value
+    let last = document.getElementById('lastName').value
+    myDictionary.firstName=first
+    myDictionary.lastName=last
     console.log(myDictionary)
     myData.push(myDictionary)
     window.alert(myData)
