@@ -6,8 +6,8 @@ let last = document.getElementById('lastName').value
 function myFoo(event) {
     event.preventDefault()
     let myDictionary = {firstName:"", lastName:""}
-    myDictionary.firstName=first
-    myDictionary.lastName=last
+    myDictionary[firstName]=first
+    myDictionary[lastName]=last
     myData.push(myDictionary)
     window.alert(myData)
     
