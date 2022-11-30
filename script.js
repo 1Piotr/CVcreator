@@ -1,11 +1,11 @@
 myData = []
-
+let myDictionary = {firstName:"", lastName:""}
 let first = document.getElementById('firstName').value
 let last = document.getElementById('lastName').value
 
 function myFoo(event) {
     event.preventDefault()
-    let myDictionary = {firstName:"", lastName:""}
+    
     myDictionary[firstName]=first
     myDictionary[lastName]=last
     console.log(myDictionary)
