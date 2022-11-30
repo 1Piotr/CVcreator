@@ -12,7 +12,7 @@ function myFoo() {
     myDictionary.lastName=last
     console.log(myDictionary)
     myData.push(myDictionary)
-    window.alert(myData)
+    window.alert(myData[0].firstName)
     
 
     }
