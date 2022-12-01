@@ -2,7 +2,7 @@ let myData = []
 
 
 class personalInfo {
-    constructor(firstName, lastName, title,  city, 
+    constructor(firstName, lastName, title,  city=0, 
         email=0, phone=0, website=0,linkedin=0) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -53,7 +53,14 @@ function myFoo(event) {
     let first = document.getElementById('firstName').value
     console.log(first)
     let last = document.getElementById('lastName').value
-    let newCV = new personalInfo(first,last)
+    let email =document.getElementById('email').value
+    let website =document.getElementById('website').value
+    let linkedin =document.getElementById('linkedin').value
+    let phone=document.getElementById('phone').value
+    let city =document.getElementById('city').value
+    let title =document.getElementById('title').value
+    let newCV = new personalInfo(first,last, email, website, linkedin,
+        phone, city, title)
     
     console.log(newCV)
     myData.push(newCV)
@@ -65,4 +72,5 @@ function myFoo(event) {
 function create() {
     document.getElementById('nameCV').innerText=myData[0].firstName
     document.getElementById('lastCV').innerText=myData[0].lastName
+    
 }
