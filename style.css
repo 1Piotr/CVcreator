@@ -20,3 +20,8 @@ body {
     background-color: antiquewhite !important;
     
 }
+@media print{
+    body {
+      background-color: #f90f0f;
+    }
+  }

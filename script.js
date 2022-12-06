@@ -74,3 +74,7 @@ function create() {
     document.getElementById('lastCV').innerText=myData[0].lastName
     
 }
+function image() {
+    let image = document.getElementById('myfile').files[0].value
+    console.log(image)
+}
