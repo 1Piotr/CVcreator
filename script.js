@@ -84,25 +84,25 @@ const employmentForm = document.getElementById("employment")
 function myFunction() {
     
     const element  = 
-        `<div class="row">
-        <div class="col-6 mb-3 pl-1">
-            <input type="month" class="form-control" placeholder="start"/>
-            <label>Start Date</label>
-        </div>
-        <div class="col-6">
-            <input type="month" class="form-control" placeholder="end" />
-            <label>End Date</label>
-        </div>
-        <div class="col-6 mb-3 pl-1">
-            <input type="text" class="form-control" placeholder="Title"/> 
-        </div>
-        <div class="col-6 mb-3 pl-1">
-            <input type="text" class="form-control" placeholder="Company Name"/>  
-        </div>
-        <div class="col-12 mb-3 pl-1">
-            <input type="text" class="form-control description" placeholder="Description"/> 
-            <button onclick="addBullet(event, this)">Add description</button>
-        `
+        `<div class="row work">
+                <div class="col-6 mb-3 pl-1">
+                    <input type="month" class="form-control startdate" placeholder="start"/>
+                    <label>Start Date</label>
+                </div>
+                <div class="col-6">
+                    <input type="month" class="form-control enddate" placeholder="end" />
+                    <label>End Date</label>
+                </div>
+                <div class="col-6 mb-3 pl-1">
+                    <input type="text" class="form-control title" placeholder="Title"/> 
+                </div>
+                <div class="col-6 mb-3 pl-1">
+                    <input type="text" class="form-control company" placeholder="Company Name"/>  
+                </div>
+                <div class="col-12 mb-3 pl-1">
+                <input type="text" class="form-control description" placeholder="Description"/> 
+                <button onclick="addBullet(event, this)">Add description</button>
+        </div>`
         ;
         employmentForm.insertAdjacentHTML("afterbegin",element)
     
@@ -117,13 +117,38 @@ function addBullet(event, element) {
     //let description=document.querySelector('.description')
     //console.log(description)
     let bullet=`<div class="col-12 mb-3 pl-1" ondblclick="remove(this)">
-    <input type="text" class="form-control" placeholder="Description" class="description"/> 
+    <input type="text" class="form-control description" placeholder="Description"/> 
 </div>`
     element.insertAdjacentHTML("beforebegin",bullet)
 
 }
+
+//function removing html element on event
 function remove(el) {
     
     let element = el;
     element.remove();
   }
+// function updating data from input
+function work(event){
+    event.preventDefault()
+    //cannot access input by ids as there will be multiply inputs
+    //I need to use query selector
+    let works = document.querySelectorAll('.work')
+        works.forEach(element => {
+            let description=[]
+           let dateStart= element.querySelector('.startdate').value
+           let dateEnd= element.querySelector('.enddate').value
+           let title = element.querySelector('.title').value
+           let company = element.querySelector('.company').value
+            let descriptionNode = element.querySelectorAll('.description')
+            descriptionNode.forEach(element =>{
+                description.push(element.value)
+
+            })
+            let newWork= new personalWork(dateStart, dateEnd, title, company, description)
+            myData.push(newWork)
+            window.alert(myData[0])
+        });
+
+}
