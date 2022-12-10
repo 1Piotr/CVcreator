@@ -1,7 +1,9 @@
 * {
     box-sizing: border-box;
 }
-
+.container {
+    justify-content: center;
+}
 body {
    
     width:100vw;
@@ -25,3 +27,11 @@ body {
       background-color: #f90f0f;
     }
   }
+.hidden {
+    display:none;
+}
+/* styling form*/
+.greenTick {
+    font-size: 1.5rem;
+    color: green;
+}

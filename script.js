@@ -1,9 +1,8 @@
-let myData = []
-
+let myData = [[],[],[],[]]
 
 class personalInfo {
     constructor(firstName, lastName, title,  city=0, 
-        email=0, phone=0, website=0,linkedin=0) {
+        email=0, phone=0, website=0,linkedin=0,personal) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title=title;
@@ -11,8 +10,8 @@ class personalInfo {
         this.city = city;
         this.phone = phone;
         this.website = website;
-        
         this.linkedin = linkedin;
+        this.personal = personal;
         
     }
 }
@@ -27,7 +26,7 @@ class personalWork {
     }
 }
 
-class personalEduc {
+class personalEdu {
     constructor(date, title, company, description) {
         this.date = date;
         this.title = title;
@@ -37,7 +36,7 @@ class personalEduc {
     }
 }
 class personalProject {
-    constructor(date, title, company, description) {
+    constructor(date, title, github, description) {
         this.date = date;
         this.title = title;
         this.github = github;
@@ -51,7 +50,6 @@ class personalCustom {
 
 function myFoo(event) {
     event.preventDefault()
-    
     let first = document.getElementById('firstName').value
     console.log(first)
     let last = document.getElementById('lastName').value
@@ -61,14 +59,13 @@ function myFoo(event) {
     let phone=document.getElementById('phone').value
     let city =document.getElementById('city').value
     let title =document.getElementById('title').value
+    let statement =document.getElementById('statement').value
     let newCV = new personalInfo(first,last, email, website, linkedin,
-        phone, city, title)
+        phone, city,title, statement)
     
     console.log(newCV)
-    myData.push(newCV)
+    myData[0]= newCV
     window.alert(myData[0].firstName)
-    
-
     }
 
 function create() {
@@ -81,9 +78,10 @@ function image() {
     console.log(image)
 }
 const employmentForm = document.getElementById("employment")
+const educationForm = document.getElementById("education")
 function myFunction() {
     
-    const element  = 
+    let element  = 
         `<div class="row work">
                 <div class="col-6 mb-3 pl-1">
                     <input type="month" class="form-control startdate" placeholder="start"/>
@@ -101,23 +99,83 @@ function myFunction() {
                 </div>
                 <div class="col-12 mb-3 pl-1">
                 <input type="text" class="form-control description" placeholder="Description"/> 
-                <button onclick="addBullet(event, this)">Add description</button>
+                <button type="button" class="btn btn-outline-primary" onclick="addBullet(event, this)">Add description</button>
         </div>`
         ;
         employmentForm.insertAdjacentHTML("afterbegin",element)
     
 }
 function  removeEmployment(){
+    
     employmentForm.removeChild(employmentForm.firstElementChild);
 
+}
+function myEducation() {
+    
+    let element  = 
+        `<div class="row education">
+                <div class="form-floating col-6 mb-3 pl-1">
+                    <input type="month" class="form-control startdate" placeholder="start"/>
+                    <label>Start Date</label>
+                </div>
+                <div class="form-floating col-6">
+                    <input type="month" class="form-control enddate" placeholder="end" />
+                    <label>End Date</label>
+                </div>
+                <div class="col-6 mb-3 pl-1">
+                    <input type="text" class="form-control title" placeholder="Course Title"/> 
+                </div>
+                <div class="col-6 mb-3 pl-1">
+                    <input type="text" class="form-control company" placeholder="University/School Name"/>  
+                </div>
+                <div class="form-floating col-12 mb-3 pl-1">
+                <input type="text" class="form-control description" placeholder="Description"/>
+                <label>Description</label>
+                <button class="btn btn-outline-primary" onclick="addBullet(event, this)">Add description</button>
+        </div>`
+        ;
+        educationForm.insertAdjacentHTML("afterbegin",element)
+    
+}
+const projectForm=document.getElementById('projects')
+function myProjects(){
+    let element=`<div class="row project">
+    <div class="col-lg-3 col-md-6 col-xsm-12 mb-3 pl-1">
+      <input type="text" class="form-control" placeholder="Project Name" aria-label="project name" class="projectName">
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-3 pl-1">
+      <input type="text" class="form-control" placeholder="gitHub"  class="github">
+      
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-3 pl-1">
+      <input type="text" class="form-control" placeholder="Project description"  id="projectDescription">`
+      projectForm.insertAdjacentHTML("afterbegin",element)
+}
+const additionalForm=document.getElementById('additional')
+function myAdditional(){
+    let element=`<div class="row project">
+    <div class="col-lg-3 col-md-6 col-xsm-12 mb-3 pl-1">
+      <input type="text" class="form-control" placeholder="Title" aria-label="project name" class="projectName">
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-3 pl-1">
+      <input type="month" class="form-control"  >
+      
+    </div>
+    <div class="col-12 mb-3 pl-1">
+        <input type="text" class="form-control description mb-3" placeholder="Description"/> 
+        <button onclick="addBullet(event, this)">Add description</button>
+    </div>
+    </div>`
+      additionalForm.insertAdjacentHTML("afterbegin",element)
 }
 
 function addBullet(event, element) {
     event.preventDefault()
     //let description=document.querySelector('.description')
     //console.log(description)
-    let bullet=`<div class="col-12 mb-3 pl-1" ondblclick="remove(this)">
-    <input type="text" class="form-control description" placeholder="Description"/> 
+    let bullet=`<div class="form-floating col-12 mt-3 pl-1" ondblclick="remove(this)">
+    <input type="text" class="form-control description" placeholder="Description"/>
+    <label>Double click to remove</label>
 </div>`
     element.insertAdjacentHTML("beforebegin",bullet)
 
@@ -149,6 +207,46 @@ function work(event){
             let newWork= new personalWork(dateStart, dateEnd, title, company, description)
             myData.push(newWork)
             window.alert(myData[0])
+        });
+
+}
+function education(event){
+    event.preventDefault()
+    //cannot access input by ids as there will be multiply inputs
+    //I need to use query selector
+    let education = document.querySelectorAll('.education')
+        education.forEach(element => {
+            let description=[]
+           let dateStart= element.querySelector('.startdate').value
+           let dateEnd= element.querySelector('.enddate').value
+           let title = element.querySelector('.title').value
+           let company = element.querySelector('.company').value
+            let descriptionNode = element.querySelectorAll('.description')
+            descriptionNode.forEach(element =>{
+                description.push(element.value)
+            })
+            let newEdu= new personalEdu(dateStart, dateEnd, title, company, description)
+            myData[2]=newEdu
+            window.alert(myData[2])
+        });
+
+}
+function project(event){
+    event.preventDefault()
+    //cannot access input by ids as there will be multiply inputs
+    //I need to use query selector
+    let project = document.querySelectorAll('.project')
+        project.forEach(element => {
+            let description=[]
+           let dateStart= element.querySelector('.startdate').value
+           let title = element.querySelector('.title').value
+            let descriptionNode = element.querySelectorAll('.description')
+            descriptionNode.forEach(element =>{
+                description.push(element.value)
+            })
+            let newProject= new personalProject(dateStart, dateEnd, title, company, description)
+            myData[3]=newProject
+            window.alert(myData[2])
         });
 
 }
