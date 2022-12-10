@@ -17,14 +17,16 @@ class personalInfo {
     }
 }
 class personalWork {
-    constructor(date, title, company, description) {
-        this.date = date;
+    constructor(dateStart, dateEnd, title, company, description) {
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
         this.title = title;
         this.company = company;
         this.description = description;
 
     }
 }
+
 class personalEduc {
     constructor(date, title, company, description) {
         this.date = date;
@@ -78,3 +80,50 @@ function image() {
     let image = document.getElementById('myfile').files[0].value
     console.log(image)
 }
+const employmentForm = document.getElementById("employment")
+function myFunction() {
+    
+    const element  = 
+        `<div class="row">
+        <div class="col-6 mb-3 pl-1">
+            <input type="month" class="form-control" placeholder="start"/>
+            <label>Start Date</label>
+        </div>
+        <div class="col-6">
+            <input type="month" class="form-control" placeholder="end" />
+            <label>End Date</label>
+        </div>
+        <div class="col-6 mb-3 pl-1">
+            <input type="text" class="form-control" placeholder="Title"/> 
+        </div>
+        <div class="col-6 mb-3 pl-1">
+            <input type="text" class="form-control" placeholder="Company Name"/>  
+        </div>
+        <div class="col-12 mb-3 pl-1">
+            <input type="text" class="form-control description" placeholder="Description"/> 
+            <button onclick="addBullet(event, this)">Add description</button>
+        `
+        ;
+        employmentForm.insertAdjacentHTML("afterbegin",element)
+    
+}
+function  removeEmployment(){
+    employmentForm.removeChild(employmentForm.firstElementChild);
+
+}
+
+function addBullet(event, element) {
+    event.preventDefault()
+    //let description=document.querySelector('.description')
+    //console.log(description)
+    let bullet=`<div class="col-12 mb-3 pl-1" ondblclick="remove(this)">
+    <input type="text" class="form-control" placeholder="Description" class="description"/> 
+</div>`
+    element.insertAdjacentHTML("beforebegin",bullet)
+
+}
+function remove(el) {
+    
+    let element = el;
+    element.remove();
+  }
