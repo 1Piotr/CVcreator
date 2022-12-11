@@ -1,8 +1,8 @@
-let myData = [[],[],[],[]]
+let myData = [[]]
 
 class personalInfo {
-    constructor(firstName, lastName, title,  city=0, 
-        email=0, phone=0, website=0,linkedin=0,personal) {
+    constructor(firstName, lastName, email="",website=0,  
+             linkedin=0,phone=0, city=0, title, personal) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title=title;
@@ -48,7 +48,7 @@ class personalCustom {
 
 }
 
-function myFoo(event) {
+function info(event) {
     event.preventDefault()
     let first = document.getElementById('firstName').value
     console.log(first)
@@ -62,15 +62,44 @@ function myFoo(event) {
     let statement =document.getElementById('statement').value
     let newCV = new personalInfo(first,last, email, website, linkedin,
         phone, city,title, statement)
+        
     
     console.log(newCV)
     myData[0]= newCV
+    let strData =JSON.stringify(myData)
     window.alert(myData[0].firstName)
+    localStorage.setItem("cvData", strData)
+    window.alert(strData)
+    let unStrData =JSON.parse(localStorage.getItem("cvData"))
+    
+    
     }
 
 function create() {
-    document.getElementById('nameCV').innerText=myData[0].firstName
-    document.getElementById('lastCV').innerText=myData[0].lastName
+    let unStrData =JSON.parse(localStorage.cvData)[0]
+    window.alert(JSON.parse(localStorage.cvData)[0].email)
+    document.getElementById('nameCV').innerText=unStrData.firstName
+    document.getElementById('lastCV').innerText=unStrData.lastName
+    document.getElementById('emailCV').innerText=unStrData.email
+    document.getElementById('phoneCV').innerText=unStrData.phone
+    document.getElementById('titleCV').innerText=unStrData.title
+    document.getElementById('statementCV').innerText=unStrData.personal
+    if (unStrData.city !=="") {
+        document.getElementById('cityCV').innerText=unStrData.city
+        document.getElementById('cityAwe').classList.remove('hidden')
+
+    }
+    if (unStrData.linkedin !=="") {
+        document.getElementById('websiteCV').innerText=unStrData.website
+        document.getElementById('websiteAwe').classList.remove('hidden')
+
+    }
+    if (unStrData.website !=="") {
+        document.getElementById('linkedinCV').innerText=unStrData.website
+        document.getElementById('linkedAwe').classList.remove('hidden')
+
+    }
+    
     
 }
 function image() {
