@@ -1,4 +1,5 @@
 let myData = [[]]
+let myWork =[]
 
 class personalInfo {
     constructor(firstName, lastName, email="",website=0,  
@@ -127,8 +128,8 @@ function myFunction() {
                     <input type="text" class="form-control company" placeholder="Company Name"/>  
                 </div>
                 <div class="col-12 mb-3 pl-1">
-                <input type="text" class="form-control description" placeholder="Description"/> 
-                <button type="button" class="btn btn-outline-primary" onclick="addBullet(event, this)">Add description</button>
+                <textarea type="text" class="form-control description" placeholder="Description"></textarea> 
+                
         </div>`
         ;
         employmentForm.insertAdjacentHTML("afterbegin",element)
@@ -139,8 +140,7 @@ function  removeEmployment(){
     employmentForm.removeChild(employmentForm.firstElementChild);
 
 }
-function myEducation() {
-    
+function myEducation() { 
     let element  = 
         `<div class="row education">
                 <div class="form-floating col-6 mb-3 pl-1">
@@ -216,29 +216,48 @@ function remove(el) {
     let element = el;
     element.remove();
   }
-// function updating data from input
+// function updating work experience data from input
 function work(event){
     event.preventDefault()
     //cannot access input by ids as there will be multiply inputs
     //I need to use query selector
     let works = document.querySelectorAll('.work')
         works.forEach(element => {
-            let description=[]
            let dateStart= element.querySelector('.startdate').value
            let dateEnd= element.querySelector('.enddate').value
            let title = element.querySelector('.title').value
            let company = element.querySelector('.company').value
-            let descriptionNode = element.querySelectorAll('.description')
-            descriptionNode.forEach(element =>{
-                description.push(element.value)
-
-            })
+           let description =element.querySelector('.description').value
             let newWork= new personalWork(dateStart, dateEnd, title, company, description)
-            myData.push(newWork)
-            window.alert(myData[0])
-        });
-
-}
+            myWork.push(newWork)
+            window.alert(myWork[0])
+            
+            
+        })
+        let strWork =JSON.stringify(myWork)
+            
+        localStorage.setItem("workData", strWork)
+    }
+function createWork(){
+    let workExp =document.getElementById('workCV')
+    let unStrWork =JSON.parse(localStorage.workData)
+    unStrWork.forEach(element => {
+        if (element.description !==""){
+            let workEle=`
+                    <h5>${element.company}</h5>
+                    <h6>${element.title}<span>${element.dateStart}</span><span>-</span><span>${element.dateEnd}</span><h/6>
+                    <p>${element.description}</p>`
+                    workExp.insertAdjacentHTML("afterbegin",workEle)            
+        }    
+        else {
+            let workEle=`
+                    <h5>${element.company}</h5>
+                    <h6>${element.title}<span>${element.dateStart}</span><span>-</span><span>${element.dateEnd}</span><h/6>`
+                    workExp.insertAdjacentHTML("afterbegin",workEle)
+                }
+        
+        })}
+            
 function education(event){
     event.preventDefault()
     //cannot access input by ids as there will be multiply inputs

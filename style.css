@@ -26,6 +26,10 @@ body {
     justify-items: space-between;
     
 }
+#right{
+    font-size: smaller;
+    
+}
 @media print{
     body {
       background-color: #f90f0f;
