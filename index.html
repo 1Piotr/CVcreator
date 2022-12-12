@@ -15,6 +15,7 @@
     <div  id="cv" class="container ">
         <div class="row h-100 ">
             <div id="left" class="col-4">
+                <img id="photoCV" class="image-fluid" width="80%" src="null">
                 <div>
                     <h2 ><span id="nameCV"></span> <span id="lastCV"></span></h2>
                     <h6 id="titleCV"></h6>
@@ -26,7 +27,7 @@
                     <h6 id="cityAwe" class="hidden"> <i class="fa-solid fa-location-dot"></i> <span id="cityCV"></span></h6>
                     <h6 id="linkedAwe" class="hidden"><i class="fa-brands fa-linkedin"></i> <span id="linkedinCV"></span></h6>
                     <h6 id="websiteAwe" class="hidden"><i class="fa-solid fa-globe"></i> <span id="websiteCV"></span></h6> 
-                    <button onclick="create(); createWork(); createEdu();createAdditional()">print</button> 
+                     
                 </div> 
                 <div id="additional">
 
@@ -41,14 +42,14 @@
                 <h2>Education</h2>
                 <div id="eduCV">
                 </div>
-                <h2 class="hidden">Projects</h2>
+                <h2 id="projectCV" class="hidden">Projects</h2>
                 
                     
             
             </div>
         </div>
     </div>
-    <h2 id="nameCV"></h2>
+    <button onclick="create(); createWork(); createEdu();createAdditional(); imageCV()">Create CV</button>
   
   
   <script src="https://kit.fontawesome.com/2da948a5c0.js" crossorigin="anonymous"></script>

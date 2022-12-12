@@ -102,9 +102,28 @@ function create() {
     
     
 }
-function image() {
-    let image = document.getElementById('myfile').files[0].value
-    console.log(image)
+
+function myImage() {
+    let photo = document.getElementById('image').files[0]
+    let reader = new FileReader()
+    reader.addEventListener("load", () => {
+        console.log(reader.result)
+        localStorage.setItem("cvPhoto",reader.result)
+    })
+    reader.readAsDataURL(photo)
+    console.log(photo)
+}
+function image(event){
+    event.preventDefault()
+    let dataURL = localStorage.getItem("cvPhoto")
+    document.getElementById("view").setAttribute("src",dataURL)
+}
+function imageCV(){  
+    let dataURL = localStorage.getItem("cvPhoto")
+    document.getElementById("photoCV").setAttribute("src",dataURL)
+}
+function removeImage(){
+    localStorage.removeItem("cvPhoto")
 }
 const employmentForm = document.getElementById("employment")
 const educationForm = document.getElementById("education")
@@ -176,6 +195,10 @@ function myProjects(){
       <input type="text" class="form-control" placeholder="Project description"  id="projectDescription">`
       projectForm.insertAdjacentHTML("afterbegin",element)
 }
+function  removeProject(){
+    projectForm.removeChild(projectForm.firstElementChild);
+
+}
 const additionalForm=document.getElementById('additional')
 function myAdditional(){
     let element=`<div class="row additional">
@@ -188,6 +211,10 @@ function myAdditional(){
     </div>
     </div>`
       additionalForm.insertAdjacentHTML("afterbegin",element)
+}
+function  removeProject(){
+    additionalForm.removeChild(additionalForm.firstElementChild);
+
 }
 
 function addBullet(event, element) {
@@ -286,22 +313,19 @@ function createEdu(){
         })}  
 function project(event){
     event.preventDefault()
+    let myProjects=[]
     //cannot access input by ids as there will be multiply inputs
     //I need to use query selector
     let project = document.querySelectorAll('.project')
         project.forEach(element => {
-            let description=[]
            let dateStart= element.querySelector('.startdate').value
            let title = element.querySelector('.title').value
-            let descriptionNode = element.querySelectorAll('.description')
-            descriptionNode.forEach(element =>{
-                description.push(element.value)
-            })
+            let description = element.querySelector('.description').value
             let newProject= new personalProject(dateStart, dateEnd, title, github, description)
-            myData[3]=newProject
-            window.alert(myData[2])
+            myProjects.push(newProject)    
         });
-
+        let strProject =JSON.stringify(myProjects)     
+        localStorage.setItem("projectData", strProject)
     }
 function additional(event){
         event.preventDefault()
@@ -320,8 +344,7 @@ function additional(event){
                 myList.push(newAdditional)
                 window.alert(myList[0].description)
             });
-        let strList =JSON.stringify(myList)     
-        localStorage.setItem("listData", strList)
+        
     
     }
 function createAdditional(){

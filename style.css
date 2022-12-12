@@ -57,3 +57,22 @@ p {
 #left >*{
     padding-top: 1rem;;
 }
+#photoCV, #view {
+    max-width:300px;
+}
+#mainForm {
+    background-image: url(img/job.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+/* to center main form*/
+#mainForm>* {
+    justify-content: center;
+    align-items: center;
+
+}
+img[src="null"] {
+    display: none;
+ }
