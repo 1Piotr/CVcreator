@@ -14,8 +14,8 @@
 <body>
 <div id="mainForm" class="col-12">
   <div class="row h-100" >
-    <div class="col-md-6">
-      <h3 class="text-muted">Please fill out the form</h3>
+    <div class="col-md-6 col-12">
+      <h3 id="header-form" class="text-muted">Please fill out the form</h3>
       <div class="accordion open" id="accordionExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingOne">
@@ -26,38 +26,38 @@
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <form class="container" onsubmit="info(event)" id="info">
               <div class="row">
-                <div class="col-md-4 col-sm-6 mb-3 pl-1">
+                <div class="col-sm-6 mb-3 pl-1">
                   <input type="text" class="form-control" placeholder="First name" aria-label="First name" id="firstName" required>
                 </div>
-                <div class="col-md-4 col-sm-6 mb-3 pl-1">
+                <div class="col-sm-6 mb-3 pl-1">
                 <input type="text" class="form-control" placeholder="Last name"  id="lastName" required> 
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4 col-sm-6 mb-3 pl-1">
+              <div class="col-sm-6 mb-3 pl-1">
                 <input type="text" class="form-control" placeholder="title"  id="title" required>
               </div>
-              <div class="col-md-4 col-sm-6 mb-3 pl-1">
+              <div class="col-sm-6 mb-3 pl-1">
                 <input type="email" class="form-control" placeholder="email"  id="email" required>  
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4 col-sm-6 mb-3 pl-1">
+              <div class="col-sm-6 mb-3 pl-1">
                 <input type="text" class="form-control" placeholder="phone"  id="phone" required>  
               </div>
-              <div class="col-md-4 col-sm-6 mb-3 pl-1">
+              <div class="col-sm-6 mb-3 pl-1">
                 <input type="text" class="form-control" placeholder="website"  id="website"> 
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4 col-sm-6 mb-3 pl-1">
+              <div class="col-sm-6 mb-3 pl-1">
                 <input type="text" class="form-control" placeholder="city"  id="city"> 
               </div>
-              <div class="col-md-4 col-sm-6 mb-3 pl-1">
+              <div class="col-sm-6 mb-3 pl-1">
                 <input type="text" class="form-control" placeholder="Linkedin"  id="linkedin"> 
               </div>
             </div>
-              <div class="col-md-8 col-sm-12 mb-3 pl-1">
+              <div class="col-sm-12 mb-3 pl-1">
                 <textarea class="form-control" placeholder="Personal statement"  id="statement" rows="3" required></textarea>
               </div>
               <input  type="submit" class="btn btn-primary" value="Next" >
@@ -100,9 +100,10 @@
             </button>
           </h2>
           <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-            <form id="projects"> 
+            <form id="projects" onsubmit="project(event)"> 
+              <input type="submit" class="btn btn-outline-primary" value="Update section">
             </form>
-            <button class="btn btn-primary" onclick="myProjects()">Add project</button><button class="btn btn-primary" onclick="removeProjects()">Remove projects</button>
+            <button class="btn btn-primary" onclick="myProjects()">Add project</button><button class="btn btn-primary" onclick="removeProject()">Remove projects</button>
           </div>
         </div>
         <div class="accordion-item open">

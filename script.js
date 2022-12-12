@@ -35,8 +35,7 @@ class personalEdu {
     }
 }
 class personalProject {
-    constructor(date, title, github, description) {
-        this.date = date;
+    constructor(title, github, description) {
         this.title = title;
         this.github = github;
         this.description = description;
@@ -89,13 +88,13 @@ function create() {
         document.getElementById('cityAwe').classList.remove('hidden')
 
     }
-    if (unStrData.linkedin !=="") {
+    if (unStrData.website !=="") {
         document.getElementById('websiteCV').innerText=unStrData.website
         document.getElementById('websiteAwe').classList.remove('hidden')
 
     }
-    if (unStrData.website !=="") {
-        document.getElementById('linkedinCV').innerText=unStrData.website
+    if (unStrData.linkedin !=="") {
+        document.getElementById('linkedinCV').innerText=unStrData.linkedin
         document.getElementById('linkedAwe').classList.remove('hidden')
 
     }
@@ -181,24 +180,30 @@ function myEducation() {
         educationForm.insertAdjacentHTML("afterbegin",element)
     
 }
+function removeEducation(){
+    educationForm.removeChild(educationForm.firstElementChild)
+
+}
 const projectForm=document.getElementById('projects')
 function myProjects(){
     let element=`<div class="row project">
     <div class="col-lg-3 col-md-6 col-xsm-12 mb-3 pl-1">
-      <input type="text" class="form-control" placeholder="Project Name" aria-label="project name" class="projectName">
+      <input type="text" class="form-control title" placeholder="Project Name" aria-label="project name">
     </div>
+    
     <div class="col-lg-3 col-md-6 col-sm-12 mb-3 pl-1">
-      <input type="text" class="form-control" placeholder="gitHub"  class="github">
+      <input type="text" class="form-control github" placeholder="gitHub"  >
       
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12 mb-3 pl-1">
-      <input type="text" class="form-control" placeholder="Project description"  id="projectDescription">`
+      <textarea type="text" class="form-control description" placeholder="Project description"  id="projectDescription"></textarea>`
       projectForm.insertAdjacentHTML("afterbegin",element)
 }
 function  removeProject(){
     projectForm.removeChild(projectForm.firstElementChild);
-
+   
 }
+employmentForm.removeChild(employmentForm.firstElementChild)
 const additionalForm=document.getElementById('additional')
 function myAdditional(){
     let element=`<div class="row additional">
@@ -212,10 +217,7 @@ function myAdditional(){
     </div>`
       additionalForm.insertAdjacentHTML("afterbegin",element)
 }
-function  removeProject(){
-    additionalForm.removeChild(additionalForm.firstElementChild);
 
-}
 
 function addBullet(event, element) {
     event.preventDefault()
@@ -318,18 +320,42 @@ function project(event){
     //I need to use query selector
     let project = document.querySelectorAll('.project')
         project.forEach(element => {
-           let dateStart= element.querySelector('.startdate').value
+           let github= element.querySelector('.github').value
            let title = element.querySelector('.title').value
             let description = element.querySelector('.description').value
-            let newProject= new personalProject(dateStart, dateEnd, title, github, description)
+            let newProject= new personalProject(title, github, description)
             myProjects.push(newProject)    
         });
         let strProject =JSON.stringify(myProjects)     
         localStorage.setItem("projectData", strProject)
     }
+function createProject(){
+        let project =document.getElementById('projectCV')
+        let unStrProject =JSON.parse(localStorage.projectData)
+        //check if user provided input if so the hidden class
+        //has to be removed
+        if (unStrProject[0].title !==''){
+            project.classList.remove('hidden')
+            unStrProject.forEach(element => {
+            if (element.github !==""){
+                let proEle=`
+                        <h6>${element.title} <span>${element.github} </span></span></h6>
+            
+                        <p>${element.description}</p>`
+                        project.insertAdjacentHTML("beforeend",proEle)            
+            }    
+            else {
+                let proEle=`
+                <h6>${element.title}</h6>
+                <p>${element.description}</p>`
+                        eduExp.insertAdjacentHTML("beforeend",proEle)
+                    }     
+            })}  
+        }
 function additional(event){
         event.preventDefault()
-        let myList = []
+        let myList = [];
+
         //cannot access input by ids as there will be multiply inputs
         //I need to use query selector
         let project = document.querySelectorAll('.additional')
@@ -343,9 +369,7 @@ function additional(event){
                 let newAdditional= new personalCustom(title,description)
                 myList.push(newAdditional)
                 window.alert(myList[0].description)
-            });
-        
-    
+            });  
     }
 function createAdditional(){
     let additional =document.getElementById('additional')

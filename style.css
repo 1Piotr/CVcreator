@@ -8,7 +8,7 @@ body {
    
     width:100vw;
     height:100vh;
-    padding: 0px;
+    padding: 0;
     margin: 0px;
 }
 #cv {
@@ -22,17 +22,18 @@ body {
     flex-direction: column;
     border-right: 1px solid black;
     background-color: antiquewhite !important;
-    align-content: space-between;
-    justify-items: space-between;
+    
     
 }
 #right{
+    display:flex;
     font-size: smaller;
+    flex-direction: column
     
 }
 @media print{
-    body {
-      background-color: #f90f0f;
+    #right, #left{
+    justify-content:start;
     }
   }
 .hidden {
@@ -58,7 +59,8 @@ p {
     padding-top: 1rem;;
 }
 #photoCV, #view {
-    max-width:300px;
+    
+    width:100%;
 }
 #mainForm {
     background-image: url(img/job.jpg);
