@@ -44,3 +44,16 @@ body {
     color: green;
     
 }
+
+p {
+    margin-bottom: 0.5rem;
+}
+#personal {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding-right: 0.5rem;
+
+}
+#left >*{
+    padding-top: 1rem;;
+}

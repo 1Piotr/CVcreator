@@ -1,9 +1,7 @@
 let myData = [[]]
-let myWork =[]
-
 class personalInfo {
-    constructor(firstName, lastName, email="",website=0,  
-             linkedin=0,phone=0, city=0, title, personal) {
+    constructor(firstName, lastName, email,website,  
+             linkedin,phone, city, title, personal) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title=title;
@@ -12,8 +10,7 @@ class personalInfo {
         this.phone = phone;
         this.website = website;
         this.linkedin = linkedin;
-        this.personal = personal;
-        
+        this.personal = personal;        
     }
 }
 class personalWork {
@@ -28,10 +25,11 @@ class personalWork {
 }
 
 class personalEdu {
-    constructor(date, title, company, description) {
-        this.date = date;
+    constructor(dateStart, dateEnd, title, school, description) {
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
         this.title = title;
-        this.company = company;
+        this.school = school;
         this.description = description;
 
     }
@@ -46,6 +44,10 @@ class personalProject {
     }
 }
 class personalCustom {
+    constructor(title,description){
+        this.title=title
+        this.description=description
+    }
 
 }
 
@@ -71,14 +73,11 @@ function info(event) {
     window.alert(myData[0].firstName)
     localStorage.setItem("cvData", strData)
     window.alert(strData)
-    let unStrData =JSON.parse(localStorage.getItem("cvData"))
-    
     
     }
 
 function create() {
     let unStrData =JSON.parse(localStorage.cvData)[0]
-    window.alert(JSON.parse(localStorage.cvData)[0].email)
     document.getElementById('nameCV').innerText=unStrData.firstName
     document.getElementById('lastCV').innerText=unStrData.lastName
     document.getElementById('emailCV').innerText=unStrData.email
@@ -109,8 +108,7 @@ function image() {
 }
 const employmentForm = document.getElementById("employment")
 const educationForm = document.getElementById("education")
-function myFunction() {
-    
+function myFunction() { 
     let element  = 
         `<div class="row work">
                 <div class="col-6 mb-3 pl-1">
@@ -155,14 +153,12 @@ function myEducation() {
                     <input type="text" class="form-control title" placeholder="Course Title"/> 
                 </div>
                 <div class="col-6 mb-3 pl-1">
-                    <input type="text" class="form-control company" placeholder="University/School Name"/>  
+                    <input type="text" class="form-control school" placeholder="University/School Name"/>  
                 </div>
                 <div class="form-floating col-12 mb-3 pl-1">
-                <input type="text" class="form-control description" placeholder="Description"/>
                 <label>Description</label>
-                <button class="btn btn-outline-primary" onclick="addBullet(event, this)">Add description</button>
-        </div>`
-        ;
+                <textarea type="text" class="form-control description" placeholder="Description"></textarea>
+        </div>`;
         educationForm.insertAdjacentHTML("afterbegin",element)
     
 }
@@ -182,16 +178,12 @@ function myProjects(){
 }
 const additionalForm=document.getElementById('additional')
 function myAdditional(){
-    let element=`<div class="row project">
+    let element=`<div class="row additional">
     <div class="col-lg-3 col-md-6 col-xsm-12 mb-3 pl-1">
-      <input type="text" class="form-control" placeholder="Title" aria-label="project name" class="projectName">
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-3 pl-1">
-      <input type="month" class="form-control"  >
-      
+      <input type="text" class="form-control title" placeholder="Title" aria-label="project name" class="projectName" required>
     </div>
     <div class="col-12 mb-3 pl-1">
-        <input type="text" class="form-control description mb-3" placeholder="Description"/> 
+        <input type="text" class="form-control description mb-3" placeholder="Description" required/> 
         <button onclick="addBullet(event, this)">Add description</button>
     </div>
     </div>`
@@ -218,24 +210,21 @@ function remove(el) {
   }
 // function updating work experience data from input
 function work(event){
+    let myWork =[]
     event.preventDefault()
     //cannot access input by ids as there will be multiply inputs
     //I need to use query selector
     let works = document.querySelectorAll('.work')
         works.forEach(element => {
-           let dateStart= element.querySelector('.startdate').value
-           let dateEnd= element.querySelector('.enddate').value
-           let title = element.querySelector('.title').value
+           let dateStart= element.querySelector('.startdate').value        
+           let dateEnd= (element.querySelector('.enddate').value !=="") ? element.querySelector('.enddate').value :"current"
+            let title = element.querySelector('.title').value
            let company = element.querySelector('.company').value
            let description =element.querySelector('.description').value
             let newWork= new personalWork(dateStart, dateEnd, title, company, description)
-            myWork.push(newWork)
-            window.alert(myWork[0])
-            
-            
+            myWork.push(newWork)     
         })
-        let strWork =JSON.stringify(myWork)
-            
+        let strWork =JSON.stringify(myWork)     
         localStorage.setItem("workData", strWork)
     }
 function createWork(){
@@ -244,41 +233,57 @@ function createWork(){
     unStrWork.forEach(element => {
         if (element.description !==""){
             let workEle=`
-                    <h5>${element.company}</h5>
-                    <h6>${element.title}<span>${element.dateStart}</span><span>-</span><span>${element.dateEnd}</span><h/6>
+                    <h6>${element.company}, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
+                    <p>${element.title}<p>
                     <p>${element.description}</p>`
-                    workExp.insertAdjacentHTML("afterbegin",workEle)            
+                    workExp.insertAdjacentHTML("beforeend",workEle)            
         }    
         else {
             let workEle=`
-                    <h5>${element.company}</h5>
-                    <h6>${element.title}<span>${element.dateStart}</span><span>-</span><span>${element.dateEnd}</span><h/6>`
-                    workExp.insertAdjacentHTML("afterbegin",workEle)
+                    <h6>${element.company}, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
+                    <p>${element.title}</p>`
+                    workExp.insertAdjacentHTML("beforeend",workEle)
                 }
         
-        })}
-            
+        })}          
 function education(event){
+    let myEdu=[]
     event.preventDefault()
     //cannot access input by ids as there will be multiply inputs
     //I need to use query selector
     let education = document.querySelectorAll('.education')
         education.forEach(element => {
-            let description=[]
            let dateStart= element.querySelector('.startdate').value
-           let dateEnd= element.querySelector('.enddate').value
+           let dateEnd= (element.querySelector('.enddate').value !=="") ? element.querySelector('.enddate').value :"current"
            let title = element.querySelector('.title').value
-           let company = element.querySelector('.company').value
-            let descriptionNode = element.querySelectorAll('.description')
-            descriptionNode.forEach(element =>{
-                description.push(element.value)
-            })
-            let newEdu= new personalEdu(dateStart, dateEnd, title, company, description)
-            myData[2]=newEdu
-            window.alert(myData[2])
+           let school = element.querySelector('.school').value
+            let description = element.querySelector('.description').value
+            let newEdu= new personalEdu(dateStart, dateEnd, title, school, description)
+            myEdu.push(newEdu)
         });
+        window.alert(myEdu[0].school)
+        let strEdu =JSON.stringify(myEdu)     
+        localStorage.setItem("eduData", strEdu)
 
 }
+function createEdu(){
+    let eduExp =document.getElementById('eduCV')
+    let unStrEdu =JSON.parse(localStorage.eduData)
+    unStrEdu.forEach(element => {
+        if (element.description !==""){
+            let eduEle=`
+                    <h6>${element.school}, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
+                    <p>${element.title}<p>
+                    <p>${element.description}</p>`
+                    eduExp.insertAdjacentHTML("beforeend",eduEle)            
+        }    
+        else {
+            let eduEle=`
+                    <h6>${element.school}, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
+                    <p>${element.title}</p>`
+                    eduExp.insertAdjacentHTML("beforeend",eduEle)
+                }     
+        })}  
 function project(event){
     event.preventDefault()
     //cannot access input by ids as there will be multiply inputs
@@ -292,9 +297,51 @@ function project(event){
             descriptionNode.forEach(element =>{
                 description.push(element.value)
             })
-            let newProject= new personalProject(dateStart, dateEnd, title, company, description)
+            let newProject= new personalProject(dateStart, dateEnd, title, github, description)
             myData[3]=newProject
             window.alert(myData[2])
         });
+
+    }
+function additional(event){
+        event.preventDefault()
+        let myList = []
+        //cannot access input by ids as there will be multiply inputs
+        //I need to use query selector
+        let project = document.querySelectorAll('.additional')
+            project.forEach(element => {
+                let description=[]
+               let title = element.querySelector('.title').value
+                let descriptionNode = element.querySelectorAll('.description')
+                descriptionNode.forEach(element =>{
+                    description.push(element.value)
+                })
+                let newAdditional= new personalCustom(title,description)
+                myList.push(newAdditional)
+                window.alert(myList[0].description)
+            });
+        let strList =JSON.stringify(myList)     
+        localStorage.setItem("listData", strList)
+    
+    }
+function createAdditional(){
+    let additional =document.getElementById('additional')
+    let unStrList =JSON.parse(localStorage.listData)
+    unStrList.forEach(element => {
+        console.log(element.description)
+        let newList = document.createElement("ul")
+        element.description.forEach(item => {
+                console.log(item)
+            let listElement = document.createElement("li") 
+            listElement.innerText=item
+            newList.appendChild(listElement)  
+    })
+        additional.appendChild(newList)
+        console.log(newList)
+        let listname=
+            `<h6>${element.title}</h6>`
+        newList.insertAdjacentHTML("beforeBegin",listname)
+                    
+        })  
 
 }
