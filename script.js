@@ -47,11 +47,12 @@ class personalCustom {
         this.title=title
         this.description=description
     }
-
 }
-
 function info(event) {
     event.preventDefault()
+    //removing class hidden from the green tick
+    //if the section is updated
+    document.getElementById('greenInfo').classList.remove('hidden')
     let first = document.getElementById('firstName').value
     console.log(first)
     let last = document.getElementById('lastName').value
@@ -64,14 +65,10 @@ function info(event) {
     let statement =document.getElementById('statement').value
     let newCV = new personalInfo(first,last, email, website, linkedin,
         phone, city,title, statement)
-        
-    
     console.log(newCV)
     myData[0]= newCV
     let strData =JSON.stringify(myData)
-    window.alert(myData[0].firstName)
     localStorage.setItem("cvData", strData)
-    window.alert(strData)
     
     }
 
@@ -98,8 +95,7 @@ function create() {
         document.getElementById('linkedAwe').classList.remove('hidden')
 
     }
-    
-    
+       
 }
 
 function myImage() {
@@ -203,7 +199,7 @@ function  removeProject(){
     projectForm.removeChild(projectForm.firstElementChild);
    
 }
-employmentForm.removeChild(employmentForm.firstElementChild)
+
 const additionalForm=document.getElementById('additional')
 function myAdditional(){
     let element=`<div class="row additional">
@@ -212,13 +208,11 @@ function myAdditional(){
     </div>
     <div class="col-12 mb-3 pl-1">
         <input type="text" class="form-control description mb-3" placeholder="Description" required/> 
-        <button onclick="addBullet(event, this)">Add description</button>
+        <button class="btn btn-outline-primary" onclick="addBullet(event, this)">Add description</button>
     </div>
     </div>`
       additionalForm.insertAdjacentHTML("afterbegin",element)
 }
-
-
 function addBullet(event, element) {
     event.preventDefault()
     //let description=document.querySelector('.description')
@@ -230,7 +224,6 @@ function addBullet(event, element) {
     element.insertAdjacentHTML("beforebegin",bullet)
 
 }
-
 //function removing html element on event
 function remove(el) {
     
@@ -239,8 +232,11 @@ function remove(el) {
   }
 // function updating work experience data from input
 function work(event){
-    let myWork =[]
     event.preventDefault()
+    let myWork =[]
+    //removing class hidden from the green tick
+    //if the section is updated
+    document.getElementById('greenWork').classList.remove('hidden')
     //cannot access input by ids as there will be multiply inputs
     //I need to use query selector
     let works = document.querySelectorAll('.work')
@@ -278,11 +274,15 @@ function createWork(){
 function education(event){
     let myEdu=[]
     event.preventDefault()
+    //removing class hidden from the green tick
+    //if the section is updated
+    document.getElementById('greenEdu').classList.remove('hidden')
     //cannot access input by ids as there will be multiply inputs
     //I need to use query selector
     let education = document.querySelectorAll('.education')
         education.forEach(element => {
            let dateStart= element.querySelector('.startdate').value
+           //if user doesnt pick the end date the value "current" is passed
            let dateEnd= (element.querySelector('.enddate').value !=="") ? element.querySelector('.enddate').value :"current"
            let title = element.querySelector('.title').value
            let school = element.querySelector('.school').value
@@ -391,4 +391,8 @@ function createAdditional(){
                     
         })  
 
+}
+function  removeAdditional(){
+    additionalForm.removeChild(additionalForm.firstElementChild);
+   
 }

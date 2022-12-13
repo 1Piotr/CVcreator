@@ -22,8 +22,7 @@ body {
     flex-direction: column;
     border-right: 1px solid black;
     background-color: antiquewhite !important;
-    
-    
+       
 }
 #right{
     display:flex;
@@ -58,7 +57,11 @@ p {
 #left >*{
     padding-top: 1rem;;
 }
-#photoCV, #view {
+#view {
+    max-width: 300px;
+    height:auto;
+}
+#photoCV {
     
     width:100%;
 }
@@ -78,3 +81,10 @@ p {
 img[src="null"] {
     display: none;
  }
+
+label {
+    text-align: center;
+}
+#linkCV {
+    text-decoration:none;
+}
