@@ -108,8 +108,8 @@ function myImage() {
     reader.readAsDataURL(photo)
     console.log(photo)
 }
-function image(event){
-    event.preventDefault()
+function image(){
+    
     let dataURL = localStorage.getItem("cvPhoto")
     document.getElementById("view").setAttribute("src",dataURL)
 }
@@ -118,26 +118,29 @@ function imageCV(){
     document.getElementById("photoCV").setAttribute("src",dataURL)
 }
 function removeImage(){
-    localStorage.removeItem("cvPhoto")
+    //localStorage.removeItem("cvPhoto")
+    document.getElementById("view").setAttribute("src",null)
 }
 const employmentForm = document.getElementById("employment")
 const educationForm = document.getElementById("education")
 function myFunction() { 
     let element  = 
         `<div class="row work">
-                <div class="col-6 mb-3 pl-1">
-                    <input type="month" class="form-control startdate" placeholder="start"/>
+                <div class="col-6 mb-3 pl-1 form-floating">
+                    <input type="month" class="form-control startdate" required/>
                     <label>Start Date</label>
                 </div>
-                <div class="col-6">
-                    <input type="month" class="form-control enddate" placeholder="end" />
-                    <label>End Date</label>
+                <div class="col-6 form-floating">
+                    <input type="month" class="form-control enddate" />
+                    <label>End Date, CURRENT if not picked </label>
                 </div>
-                <div class="col-6 mb-3 pl-1">
-                    <input type="text" class="form-control title" placeholder="Title"/> 
+                <div class="col-6 mb-3 pl-1 form-floating">
+                    <input type="text" class="form-control title" placeholder="" required/>
+                    <label>Title</label>
                 </div>
-                <div class="col-6 mb-3 pl-1">
-                    <input type="text" class="form-control company" placeholder="Company Name"/>  
+                <div class="col-6 mb-3 pl-1 form-floating">
+                    <input type="text" class="form-control company" placeholder="" required/>
+                    <label>Company Name</label>
                 </div>
                 <div class="col-12 mb-3 pl-1">
                 <textarea type="text" class="form-control description" placeholder="Description"></textarea> 
@@ -148,51 +151,55 @@ function myFunction() {
     
 }
 function  removeEmployment(){
-    
+    if (employmentForm.children.length > 1){  
     employmentForm.removeChild(employmentForm.firstElementChild);
-
+    }
 }
 function myEducation() { 
     let element  = 
         `<div class="row education">
                 <div class="form-floating col-6 mb-3 pl-1">
-                    <input type="month" class="form-control startdate" placeholder="start"/>
+                    <input type="month" class="form-control startdate" required/>
                     <label>Start Date</label>
                 </div>
                 <div class="form-floating col-6">
-                    <input type="month" class="form-control enddate" placeholder="end" />
-                    <label>End Date</label>
+                    <input type="month" class="form-control enddate"/>
+                    <label>End Date, CURRENT if not picked</label>
                 </div>
-                <div class="col-6 mb-3 pl-1">
-                    <input type="text" class="form-control title" placeholder="Course Title"/> 
+                <div class="form-floating col-6 mb-3 pl-1">
+                    <input type="text" class="form-control title" placeholder="" required/>
+                    <label>Course Title</label>
                 </div>
-                <div class="col-6 mb-3 pl-1">
-                    <input type="text" class="form-control school" placeholder="University/School Name"/>  
+                <div class="form-floating col-6 mb-3 pl-1">
+                    <input type="text" class="form-control school" placeholder="" required/>
+                    <label>University/School Name</label>  
                 </div>
-                <div class="form-floating col-12 mb-3 pl-1">
-                <label>Description</label>
+                <div class="col-12 mb-3 pl-1">
                 <textarea type="text" class="form-control description" placeholder="Description"></textarea>
         </div>`;
         educationForm.insertAdjacentHTML("afterbegin",element)
     
 }
 function removeEducation(){
+    //leave at least one fieldset
+    if (educationForm.children.length > 1){
     educationForm.removeChild(educationForm.firstElementChild)
-
+    }
 }
 const projectForm=document.getElementById('projects')
 function myProjects(){
     let element=`<div class="row project">
-    <div class="col-lg-3 col-md-6 col-xsm-12 mb-3 pl-1">
-      <input type="text" class="form-control title" placeholder="Project Name" aria-label="project name">
-    </div>
+    <div class="col-12 mb-3 pl-1 form-floating">
+      <input type="text" class="form-control title" placeholder="" aria-label="project name" required>
+        <label>Project Name</label>
+      </div>
     
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-3 pl-1">
-      <input type="text" class="form-control github" placeholder="gitHub"  >
-      
+    <div class="col-12 mb-3 pl-1 form-floating">
+      <input type="text" class="form-control github" placeholder=""  >
+      <label>gitHub</label>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-3 pl-1">
-      <textarea type="text" class="form-control description" placeholder="Project description"  id="projectDescription"></textarea>`
+    <div class="col-12 mb-3 pl-1">
+      <textarea type="text" class="form-control description" placeholder="Project description"  id="projectDescription" required></textarea>`
       projectForm.insertAdjacentHTML("afterbegin",element)
 }
 function  removeProject(){
@@ -203,12 +210,15 @@ function  removeProject(){
 const additionalForm=document.getElementById('additional')
 function myAdditional(){
     let element=`<div class="row additional">
-    <div class="col-lg-3 col-md-6 col-xsm-12 mb-3 pl-1">
-      <input type="text" class="form-control title" placeholder="Title" aria-label="project name" class="projectName" required>
+    <div class="col-12 mb-3 pl-1 form-floating">
+      <input type="text" class="form-control title" placeholder="" aria-label="project name" class="projectName" required>
+      <label>Title</label>
     </div>
-    <div class="col-12 mb-3 pl-1">
-        <input type="text" class="form-control description mb-3" placeholder="Description" required/> 
+    <div class="col-12 mb-3 pl-1 form-floating">
+        <input type="text" class="form-control description mb-3" required/>
+        <label>Description</label> 
         <button class="btn btn-outline-primary" onclick="addBullet(event, this)">Add description</button>
+        
     </div>
     </div>`
       additionalForm.insertAdjacentHTML("afterbegin",element)
@@ -218,7 +228,7 @@ function addBullet(event, element) {
     //let description=document.querySelector('.description')
     //console.log(description)
     let bullet=`<div class="form-floating col-12 mt-3 pl-1" ondblclick="remove(this)">
-    <input type="text" class="form-control description" placeholder="Description"/>
+    <input type="text" class="form-control description" required/>
     <label>Double click to remove</label>
 </div>`
     element.insertAdjacentHTML("beforebegin",bullet)
@@ -290,7 +300,7 @@ function education(event){
             let newEdu= new personalEdu(dateStart, dateEnd, title, school, description)
             myEdu.push(newEdu)
         });
-        window.alert(myEdu[0].school)
+        
         let strEdu =JSON.stringify(myEdu)     
         localStorage.setItem("eduData", strEdu)
 
@@ -348,7 +358,7 @@ function createProject(){
                 let proEle=`
                 <h6>${element.title}</h6>
                 <p>${element.description}</p>`
-                        eduExp.insertAdjacentHTML("beforeend",proEle)
+                project.insertAdjacentHTML("beforeend",proEle)
                     }     
             })}  
         }
@@ -368,8 +378,10 @@ function additional(event){
                 })
                 let newAdditional= new personalCustom(title,description)
                 myList.push(newAdditional)
-                window.alert(myList[0].description)
-            });  
+                
+            }); 
+        let strList =JSON.stringify(myList)     
+        localStorage.setItem("listData", strList)
     }
 function createAdditional(){
     let additional =document.getElementById('additional')
@@ -396,3 +408,6 @@ function  removeAdditional(){
     additionalForm.removeChild(additionalForm.firstElementChild);
    
 }
+//the work and education section should start with at least one filedset
+myFunction()
+myEducation()
