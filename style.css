@@ -49,6 +49,7 @@ p {
     margin-bottom: 0.5rem;
 }
 #personal {
+    flex-direction: column;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     padding-right: 0.5rem;

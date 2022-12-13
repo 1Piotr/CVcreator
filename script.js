@@ -107,18 +107,20 @@ function myImage() {
     })
     reader.readAsDataURL(photo)
     console.log(photo)
-}
-function image(){
-    
     let dataURL = localStorage.getItem("cvPhoto")
     document.getElementById("view").setAttribute("src",dataURL)
 }
+//function image(){
+    
+   // let dataURL = localStorage.getItem("cvPhoto")
+   // document.getElementById("view").setAttribute("src",dataURL)
+//}
 function imageCV(){  
     let dataURL = localStorage.getItem("cvPhoto")
     document.getElementById("photoCV").setAttribute("src",dataURL)
 }
 function removeImage(){
-    //localStorage.removeItem("cvPhoto")
+    localStorage.removeItem("cvPhoto")
     document.getElementById("view").setAttribute("src",null)
 }
 const employmentForm = document.getElementById("employment")
