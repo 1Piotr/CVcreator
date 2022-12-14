@@ -270,15 +270,15 @@ function createWork(){
     unStrWork.forEach(element => {
         if (element.description !==""){
             let workEle=`
-                    <h6>${element.company}, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
-                    <p>${element.title}<p>
+                    <h6>${element.company}/<span>${element.title}</span>, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
+                    
                     <p>${element.description}</p>`
                     workExp.insertAdjacentHTML("beforeend",workEle)            
         }    
         else {
             let workEle=`
-                    <h6>${element.company}, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
-                    <p>${element.title}</p>`
+                    <h6>${element.company}/<span>${element.title}</span>, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
+                    `
                     workExp.insertAdjacentHTML("beforeend",workEle)
                 }
         
@@ -313,15 +313,14 @@ function createEdu(){
     unStrEdu.forEach(element => {
         if (element.description !==""){
             let eduEle=`
-                    <h6>${element.school}, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
-                    <p>${element.title}<p>
+                    <h6>${element.school}/<span>${element.title}</span>, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
                     <p>${element.description}</p>`
                     eduExp.insertAdjacentHTML("beforeend",eduEle)            
         }    
         else {
             let eduEle=`
-                    <h6>${element.school}, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
-                    <p>${element.title}</p>`
+                    <h6>${element.school}/<span>${element.title}</span>, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
+                    `
                     eduExp.insertAdjacentHTML("beforeend",eduEle)
                 }     
         })}  
@@ -351,7 +350,8 @@ function createProject(){
             unStrProject.forEach(element => {
             if (element.github !==""){
                 let proEle=`
-                        <h6>${element.title} <span>${element.github} </span></span></h6>
+                        <h6>${element.title}, <span><span><i class="fa-brands fa-github"></i> </span>
+                        ${element.github} </span></span></h6>
             
                         <p>${element.description}</p>`
                         project.insertAdjacentHTML("beforeend",proEle)            
@@ -367,7 +367,6 @@ function createProject(){
 function additional(event){
         event.preventDefault()
         let myList = [];
-
         //cannot access input by ids as there will be multiply inputs
         //I need to use query selector
         let project = document.querySelectorAll('.additional')

@@ -5,7 +5,7 @@
     justify-content: center;
 }
 body {
-    font-weight: 300;
+    
     max-width:100vw;
     min-height:100vh;
     padding: 0;
@@ -18,16 +18,16 @@ body {
 }
 
 #left {
-    display:flex;
-    flex-direction: column;
-    border-right: 1px solid black;
-    background-color:rgb(251, 251, 235) !important;
+    
+   /*   border-right: 1px solid black;*/
+   /* background-color:rgb(251, 251, 235) !important;*/
        
 }
 #right{
     display:flex;
     font-size: smaller;
-    flex-direction: column
+    flex-direction: column;
+    font-weight: 300;
     
 }
 @media print{
@@ -45,26 +45,24 @@ body {
     
 }
 
-p {
-    margin-bottom: 0.5rem;
-}
+
 #personal {
-    flex-direction: column;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding-right: 0.5rem;
+    
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    ;
 
 }
-#left >*{
+/*#left >*{
     padding-top: 1rem;;
-}
+}*/
 #view {
     max-width: 300px;
-    height:auto;
+    max-width: 100%;
 }
 #photoCV {
-    
-    width:100%;
+    max-width: 300px;
+    max-width: 100%
 }
 #mainForm {
     background-image: url(img/job.jpg);
@@ -94,6 +92,28 @@ label {
     text-decoration:none;
 }
 #left ul {
+    align-self: center;
     list-style: none;
     padding-left:0;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+
+}
+#right h4 {
+    font-weight: 400;
+}
+#right > div {
+    border-bottom: 1px solid #0d6efd;
+}
+#right h6 {
+    color:#0d6efd;
+    
+}
+
+/*responsive*/
+@media screen and (max-width: 768px){
+    #left ul,#personal {
+        border:none;
+    }
+    
 }
