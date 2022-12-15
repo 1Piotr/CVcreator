@@ -15,12 +15,7 @@ body {
     height: 100%;
 }
 
-#left {
-    
-   /*   border-right: 1px solid black;*/
-   /* background-color:rgb(251, 251, 235) !important;*/
-       
-}
+
 #right{
     display:flex;
     font-size: smaller;
@@ -132,9 +127,7 @@ a {
         width: 50%;
        
     }
-    #left {
-        display:inline-flex;
-    }
+    
        
 }
 
