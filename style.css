@@ -31,10 +31,16 @@ body {
     
 }
 @media print{
-    #right, #left{
-    justify-content:start;
+   
+    #left {
+        width:25% !important;
+        
+    }
+    #right {
+        width:75% !important;
     }
   }
+
 .hidden {
     display:none;
 }
@@ -47,7 +53,7 @@ body {
 
 
 #personal {
-    
+
     border-top: 1px solid white;
     border-bottom: 1px solid white;
     ;
@@ -56,9 +62,10 @@ body {
 /*#left >*{
     padding-top: 1rem;;
 }*/
+
 #view {
     max-width: 300px;
-    max-width: 100%;
+    
 }
 #photoCV {
     max-width: 300px;
@@ -88,15 +95,21 @@ img[src="null"] {
 label {
     text-align: center;
 }
-#linkCV {
+a {
     text-decoration:none;
 }
-#left ul {
-    align-self: center;
+#additional div {
+    
+    
+
+    border-bottom: 1px solid white;
+   /* border-bottom: 1px solid white;*/
+    padding-top: 0.5rem;
+
+}
+#additional ul {
     list-style: none;
     padding-left:0;
-    border-bottom: 1px solid white;
-    padding-bottom: 0.5rem;
 
 }
 #right h4 {
@@ -112,8 +125,9 @@ label {
 
 /*responsive*/
 @media screen and (max-width: 768px){
-    #left ul,#personal {
+    #left  ,#personal {
         border:none;
     }
+    
     
 }
