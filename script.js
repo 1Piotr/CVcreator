@@ -121,11 +121,11 @@ const employmentForm = document.getElementById("employment")
 function myFunction() { 
     let element  = 
         `<div class="row work" ondblclick="removeRestricted(this)">
-                <div class="col-6 mb-3 pl-1 form-floating">
+                <div class="col-12 col-md-6 mb-3 pl-1 form-floating">
                     <input type="month" class="form-control startdate" required/>
                     <label>Start Date</label>
                 </div>
-                <div class="col-6 form-floating">
+                <div class="col-12 col-md-6 mb-3 pl-1 form-floating">
                     <input type="month" class="form-control enddate" />
                     <label>End Date, CURRENT if not picked </label>
                 </div>
@@ -200,11 +200,11 @@ const educationForm = document.getElementById("education")
 function myEducation() { 
     let element  = 
         `<div class="row education" ondblclick="removeRestricted(this)">
-                <div class="form-floating col-6 mb-3 pl-1">
+                <div class="form-floating col-12 col-md-6 mb-3 pl-1">
                     <input type="month" class="form-control startdate" required/>
                     <label>Start Date</label>
                 </div>
-                <div class="form-floating col-6">
+                <div class="form-floating col-12 col-md-6 mb-3 pl-1">
                     <input type="month" class="form-control enddate"/>
                     <label>End Date, CURRENT if not picked</label>
                 </div>
