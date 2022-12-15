@@ -58,15 +58,13 @@ function info(event) {
     let myData=[[]]
     //removing class hidden from the green tick
     //if the section is updated
-    document.getElementById('alertInfo').classList.remove('hidden')
+    document.getElementById('greenInfo').classList.remove('hidden')
     //closing accordion item on succesful udating
     let myCollapse = document.getElementById('collapseOne')
     let bsCollapse = new bootstrap.Collapse(myCollapse, {
   toggle: false
 })
     bsCollapse.hide()
-    
-    
     let first = document.getElementById('firstName').value
     console.log(first)
     let last = document.getElementById('lastName').value
@@ -139,9 +137,9 @@ function myFunction() {
                     <input type="text" class="form-control company" placeholder="" required/>
                     <label>Company Name</label>
                 </div>
-                <div class="col-12 mb-3 pl-1">
-                <textarea type="text" class="form-control description" placeholder="Description"></textarea> 
-                
+                <div class="col-12 mb-3 pl-1 form-floating">
+                <textarea type="text" class="form-control description" placeholder=""></textarea> 
+                <label>Description</label>
         </div>`
         ;
         employmentForm.insertAdjacentHTML("afterbegin",element)
@@ -158,7 +156,7 @@ function work(event){
     let myWork =[]
     //removing class hidden from the green tick
     //if the section is updated
-    
+    document.getElementById('greenWork').classList.remove('hidden')
     //cannot access input by ids as there will be multiply inputs
     //I need to use query selector
     let myCollapse = document.getElementById('collapseTwo')
@@ -186,7 +184,6 @@ function createWork(){
             if (element.description !==""){
                 let workEle=`
                         <h6>${element.company}/<span>${element.title}</span>, <span>${element.dateStart} </span><span>to</span><span> ${element.dateEnd}</span></h6>
-                        
                         <p>${element.description}</p>`
                         workExp.insertAdjacentHTML("beforeend",workEle)            
             }    
@@ -219,8 +216,10 @@ function myEducation() {
                     <input type="text" class="form-control school" placeholder="" required/>
                     <label>University/School Name</label>  
                 </div>
-                <div class="col-12 mb-3 pl-1">
-                <textarea type="text" class="form-control description" placeholder="Description"></textarea>
+                <div class="col-12 mb-3 pl-1 form-floating">
+                <textarea type="text" class="form-control description" placeholder=""></textarea>
+                <label>Description</label>
+                </div>
         </div>`;
         educationForm.insertAdjacentHTML("afterbegin",element)
     
@@ -297,8 +296,10 @@ function myProjects(){
       <input type="text" class="form-control github" placeholder=""  >
       <label>gitHub</label>
     </div>
-    <div class="col-12 mb-3 pl-1">
-      <textarea type="text" class="form-control description" placeholder="Project description"  id="projectDescription" required></textarea>`
+    <div class="col-12 mb-3 pl-1 form-floating">
+      <textarea type="text" class="form-control description" placeholder=""  id="projectDescription" required></textarea>
+      <label>Project description</label>`
+    
       projectForm.insertAdjacentHTML("afterbegin",element)
 }
 
@@ -368,7 +369,7 @@ function myAdditional(){
     </div>
     <div class="col-12 mb-3 pl-1 form-floating">
         <input type="text" class="form-control description mb-3" required/>
-        <label>First list element</label> 
+        <label>List element</label> 
         <button class="btn btn-outline-primary" onclick="addBullet(event, this)">Add list element</button>   
     </div>
     </div>`
@@ -385,7 +386,7 @@ function addBullet(event, element) {
     //console.log(description)
     let bullet=`<div class="form-floating col-12 mt-3 pl-1" ondblclick="remove(this)">
     <input type="text" class="form-control description" required/>
-    <label>Double click to remove</label>
+    <label>List item (Double click to remove)</label>
 </div>`
     element.insertAdjacentHTML("beforebegin",bullet)
 
@@ -460,14 +461,14 @@ function myImage() {
     })
     reader.readAsDataURL(photo)
     console.log(photo)
-    let dataURL = localStorage.getItem("cvPhoto")
-    document.getElementById("view").setAttribute("src",dataURL)
+    //let dataURL = localStorage.getItem("cvPhoto")
+    //document.getElementById("view").setAttribute("src",dataURL)
 }
-//function image(){
+function image(){
     
-   // let dataURL = localStorage.getItem("cvPhoto")
-   // document.getElementById("view").setAttribute("src",dataURL)
-//}
+    let dataURL = localStorage.getItem("cvPhoto")
+   document.getElementById("view").setAttribute("src",dataURL)
+}
 function imageCV(){  
     let dataURL = localStorage.getItem("cvPhoto")
     document.getElementById("photoCV").setAttribute("src",dataURL)
@@ -475,6 +476,7 @@ function imageCV(){
 function removeImage(){
     localStorage.removeItem("cvPhoto")
     document.getElementById("view").setAttribute("src",null)
+    document.getElementById("image").value=""
 }
 
 // function clearing user input from local storage 

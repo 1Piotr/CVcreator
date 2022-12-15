@@ -1,9 +1,7 @@
 *{
     box-sizing: border-box;
 }
-.container {
-    justify-content: center;
-}
+
 body {
     
     max-width:100vw;
@@ -68,8 +66,8 @@ body {
     
 }
 #photoCV {
-    max-width: 300px;
-    max-width: 100%
+    width: 100%;
+   
 }
 #mainForm {
     background-image: url(img/job.jpg);
@@ -124,10 +122,26 @@ a {
 }
 
 /*responsive*/
+
+
 @media screen and (max-width: 768px){
     #left  ,#personal {
         border:none;
     }
-    
-    
+    #photoCV {
+        width: 50%;
+       
+    }
+    #left {
+        display:inline-flex;
+    }
+       
+}
+
+@media screen and (max-width: 330px){
+    #photoCV {
+        width: 100%;
+       
+    }
+       
 }
