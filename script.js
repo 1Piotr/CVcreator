@@ -461,8 +461,8 @@ function myImage() {
     })
     reader.readAsDataURL(photo)
     console.log(photo)
-    //let dataURL = localStorage.getItem("cvPhoto")
-    //document.getElementById("view").setAttribute("src",dataURL)
+    let dataURL = localStorage.getItem("cvPhoto")
+    document.getElementById("view").setAttribute("src",dataURL)
 }
 function image(){
     
@@ -506,8 +506,8 @@ function removeLocal(){
     
 }
 //the work and education section should start with at least one filedset
-myFunction()
-myEducation()
+//myFunction()
+//myEducation()
 // removing only if more than one left after removing
 function removeRestricted(el) {  
     let element = el;
