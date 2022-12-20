@@ -1,3 +1,4 @@
+
 *{
     box-sizing: border-box;
 }
@@ -23,16 +24,7 @@ body {
     font-weight: 300;
     
 }
-@media print{
-   
-    #left {
-        width:25% !important;
-        
-    }
-    #right {
-        width:75% !important;
-    }
-  }
+
 
 .hidden {
     display:none;
@@ -52,9 +44,7 @@ body {
     ;
 
 }
-/*#left >*{
-    padding-top: 1rem;;
-}*/
+
 
 #view {
     max-width: 300px;
@@ -93,8 +83,6 @@ a {
 }
 #additional div {
     
-    
-
     border-bottom: 1px solid white;
    /* border-bottom: 1px solid white;*/
     padding-top: 0.5rem;
@@ -138,3 +126,13 @@ a {
     }
        
 }
+@media print{
+   
+    #left {
+        width:25% !important;
+        
+    }
+    #right {
+        width:75% !important;
+    }
+  }
